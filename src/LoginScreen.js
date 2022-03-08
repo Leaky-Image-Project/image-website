@@ -27,7 +27,14 @@ const LoginScreen = () => {
 
         try {
             // This section is directly taken from the video with variable name changes
-            const resp = await axios.post(LOGIN_URL, JSON.stringify({ username: userName, password: passWord}), {headers: { 'Content-Type': 'application/json' }});
+            const resp = await axios.post(
+                LOGIN_URL, 
+                JSON.stringify({ username: userName, password: passWord}), 
+                {
+                    withCredentials: true,
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
             const token = resp?.data?.token;
             const role = resp?.data?.role;
             setAuth({ userName, passWord, role, token });

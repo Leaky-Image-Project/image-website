@@ -49,6 +49,7 @@ const FileUpload = () => {
       } catch (e) {
           console.log(e)
       }
+      window.location.reload(false);
   }
 
   return (

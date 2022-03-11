@@ -12,6 +12,7 @@ const FileUpload = () => {
   const [file, setFile] = useState()
   const [errorMessage, setErrorMessage] = useState('')
   const [success, setSuccess] = useState(false)
+  const [fileAddr, setFileAddr] = useState('');
 
   useEffect(() => {
     setErrorMessage('')
@@ -21,7 +22,7 @@ const FileUpload = () => {
     e.preventDefault()
 
     try {
-      console.log('look here', file)
+      // console.log('look here', file)
 
       let formdata = new FormData()
       formdata.append('img_data', file)
@@ -33,10 +34,11 @@ const FileUpload = () => {
       })
 
       console.log(data)
-      setSuccess(true)
+      setFileAddr(data.data.Id);
     } catch (e) {
       setErrorMessage('File Not Accepted')
     }
+    setSuccess(true)
   }
 
   const logout = async (e) => {
@@ -58,6 +60,7 @@ const FileUpload = () => {
         {success ? (
           <>
             <h1>Image Uploaded Successfully!</h1>
+            <p>Address is http://localhost:3030/image/{fileAddr}</p>
           </>
         ) : (
           <>
